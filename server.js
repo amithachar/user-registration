@@ -26,13 +26,14 @@ app.post('/register', (req, res) => {
     const sql = 
       "INSERT INTO users (username, password, email, age) VALUES (?, ?, ?, ?)";
 
-   db.query(sql, [username, password, email, parseInt(age)], (err) => {
-    if (err) {
-        console.error("DB ERROR:", err);
-        res.send('Error saving data');
-    } else {
-        res.send('User registered successfully');
-    }
+  db.query(sql, [username, password, email, age], (err) => {
+        if (err) {
+            console.error(err);
+            res.send('Error saving data');
+        } else {
+            res.send('User registered successfully');
+        }
+    });
 });
 
 const PORT = process.env.PORT || 3000;
