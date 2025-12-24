@@ -7,12 +7,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 const db = mysql.createConnection({
-    host: 'sqlserver02.mysql.database.azure.com',
-    user: 'backend',
-    password: 'Amith@1997',
-    database: 'user_db',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     ssl: { rejectUnauthorized: true }
 });
+
 
 db.connect(err => {
     if (err) console.error(err);
